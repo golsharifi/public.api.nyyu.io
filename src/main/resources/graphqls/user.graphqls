@@ -1,0 +1,54 @@
+type Query {
+  getUser: User
+  getUserById(
+    id: Int!
+  ) : User
+  getUserCount: Int
+  getPaginatedUsers(offset: Int, limit: Int!): [User]
+  getDisallowed: [GeoLocation]
+  getWhitelistByUser(
+    userId: Int
+  ) : Whitelist
+  getWhitelists : [Whitelist]
+  checkWhitelist: Whitelist
+  getStatement(
+    from: Float,
+    to: Float
+  ) : Statement
+}
+
+extend type Mutation {
+  addDisallowed(
+    country: String!,
+    countryCode: String!)
+    : GeoLocation
+  makeAllow(locationId: Int!): Int
+  resetPasswordByAdmin(email: String!): String
+  createNewUser(
+    email: String!
+    country: String!
+    role: String!
+    avatarName: String!
+    shortName: String!
+  ): String
+  changeRole(email: String!, role: String!): String
+  changePassword(newPassword: String!): String!
+  requestEmailChange: String!
+  confirmEmailChange(code: String!, newEmail: String!): String!
+  deleteAccount: String!
+  confirmDeleteAccount(text: String!): String!
+  putInWhitelist(
+    userId: Int,
+    reason: String
+  ) : Int
+  removeFromWhitelist(
+    userId: Int
+  ) : Int
+  suspendUserByAdmin(email: String): String
+  releaseUserByAdmin(email: String): String
+}
+
+schema {
+  # query: Query
+  mutation: Mutation
+}

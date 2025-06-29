@@ -1,0 +1,51 @@
+extend type Mutation {
+	placeBid(
+		roundId: Int!,
+		tokenAmount: Float!,
+		tokenPrice: Float!
+	) : Bid	
+	increaseBid(
+		roundId: Int!,
+		tokenAmount: Float!,
+		tokenPrice: Float!
+	) : Bid
+
+	# for only test
+	makeConfirmed(
+		userId: Int,
+		roundId: Int
+	) : Int
+	closeBid(
+		roundId: Int!
+	) : String
+}
+
+extend type Query {
+	getBidListByRound(
+		round: Int!
+	): [Bid]
+	getBidListByUser : [Bid]
+	getBidListByAdmin(
+		userId: Int!
+	): [Bid]
+	getBidByAdmin(
+		userId: Int, 
+		roundId: Int!
+	) : Bid
+	getBid(
+		roundId: Int!
+	) : Bid
+	getBidListById(
+		roundId: Int
+	) : [Bid]
+	getBidList : [Bid]
+	getBidListFrom(
+		from: Float
+	) : [Bid]
+}
+
+
+schema {
+   query: Query,
+   mutation: Mutation
+}

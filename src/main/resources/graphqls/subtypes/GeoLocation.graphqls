@@ -1,0 +1,9 @@
+type GeoLocation {
+    id: Int!,
+    regDate: Float,
+    updateDate: Float,
+    deleted: Int,
+    country: String
+    countryCode: String,
+    isAllowed: Boolean
+}

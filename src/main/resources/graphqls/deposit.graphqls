@@ -1,0 +1,89 @@
+extend type Query {
+    # for paypal
+    getAllPaypalDepositTxns(
+        status: Int,
+        showStatus: Int,
+        offset: Int,
+        limit: Int,
+        orderBy: String
+    ) : [PaypalTransaction]
+    getPaypalDepositTxnsByUser(
+        orderBy: String,
+        showStatus: Int
+    ) : [PaypalTransaction]
+    getPaypalDepositTxnById(
+        id: Int
+    ) : PaypalTransaction
+
+    # bank deposit queries
+    getAllBankDepositTxns(
+        orderBy: String
+    ) : [BankDepositTransaction]
+    getBankDepositTxnsByUser(
+        orderBy: String,
+        showStatus: Int
+    ) : [BankDepositTransaction]
+    getBankDepositTxnById(
+        id: Int,
+        showStatus: Int
+    ) : BankDepositTransaction
+    getBankDepositTxnByIdByAdmin(
+        id: Int
+    ) : BankDepositTransaction
+    getUnconfirmedBankDepositTxns : [BankDepositTransaction]
+    getUnconfirmedBankDepositTxnsByUser : [BankDepositTransaction]    
+}
+
+extend type Mutation {
+    # paypal deposit
+    paypalForDeposit(
+        amount: Float,
+        currencyCode: String,
+        cryptoType: String
+    ) : OrderResponseDTO
+    captureOrderForDeposit(
+        orderId: String
+    ) : Boolean
+    changePayPalDepositShowStatus(
+        id: Int,
+        showStatus: Int
+    ) : Int
+    updateCoinpaymentTxHash(
+        id: Int,
+        txHash: String
+    ) : Int
+    
+    # stripe deposit
+    stripeForDeposit(
+        amount: Float,
+        fiatType: String,
+        paymentIntentId: String,
+        paymentMethodId: String,
+        isSaveCard: Boolean
+    ) : PayResponse
+    changeStripeDepositShowStatus(
+        id: Int,
+        showStatus: Int
+    ) : Int
+
+    stripeForDepositWithSavedCard(
+        amount: Float,
+        fiatType: String,
+        cardId: Int,
+        paymentIntentId: String,
+    ) : PayResponse
+
+    # bank deposit
+    bankForDeposit : String
+    confirmBankDeposit(
+        id: Int,
+        currencyCode: String,
+        amount: Float,
+        cryptoType: String,
+        code: String
+    ) : BankDepositTransaction
+    changeBankDepositShowStatus(
+        id: Int,
+        showStatus: Int
+    ) : Int
+}

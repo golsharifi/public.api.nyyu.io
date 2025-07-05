@@ -1,0 +1,9 @@
+type Notification {
+    id: Int,
+    userId: Int,
+    timeStamp: Float,
+    nType: Int,
+    read: Boolean,
+    title: String,
+    msg: String
+}

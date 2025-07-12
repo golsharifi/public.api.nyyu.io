@@ -1,0 +1,17 @@
+type BankDepositTransaction {
+    id: Int,
+    userId: Int,
+    email: String,
+    uid: String,
+    amount: Float,
+    createdAt: Float,
+    confirmedAt: Float,
+    status: Boolean,
+    fiatType: String,
+    usdAmount: Float,
+    cryptoType: String,
+    cryptoPrice: Float,
+    fee: Float,
+    deposited: Float,
+    isShow: Boolean
+}

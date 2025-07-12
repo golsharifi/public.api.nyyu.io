@@ -1,0 +1,33 @@
+extend type Query {
+    getUserTiers : [Tier]
+    getTaskSetting: TaskSetting
+}
+
+extend type Mutation {
+    addNewUserTier(
+        level: Int!,
+        name: String!,
+        point: Float!,
+        svg: String!
+    ) : Tier
+    updateUserTier(
+        level: Int!,
+        name: String,
+        point: Float,
+        svg: String
+    ) : Tier
+    deleteUserTier(
+        level: Int!
+    ) : Int
+    addNewSetting(
+        setting: TaskSettingInput
+    ) : TaskSetting
+    updateTaskSetting(
+        setting: TaskSettingInput
+    ) : TaskSetting
+}
+
+schema {
+    query: Query,
+    mutation: Mutation
+}

@@ -1,0 +1,22 @@
+extend type Mutation {
+    # create new Presale
+    createNewPresale(
+        startedAt: Float!,
+        endedAt: Float!,
+        tokenAmount: Float!,
+        tokenPrice: Float!,
+        conditions: [PreSaleConditionInput!]!
+    ) : Int
+}
+
+extend type Query {
+    getPreSales: [PreSale]
+    getPreSaleByStatus(
+        status: Int
+    ) : [PreSale]
+}
+
+schema {
+    mutation: Mutation,
+    query: Query
+}

@@ -1,0 +1,68 @@
+extend type Query {
+    getBalances : [BalancePayload]
+    getBalancesByUserIdByAdmin(
+        userId: Int
+    ) : [BalancePayload]
+    getBalancesByAdmin : [BalancePerUser]
+    
+    # Get Coinpayment Transaction for Deposit
+    getCoinpaymentDepositTx : [CoinpaymentDepositTransaction]
+    getCoinpaymentDepositTxByUser(
+        showStatus: Int
+    ) : [CoinpaymentDepositTransaction]
+    getCoinpaymentDepositTxByAdmin(
+        userId: Int,
+    ) : [CoinpaymentDepositTransaction]
+    getCoinpaymentDepositTxById(
+        id: Int
+    ) : CoinpaymentDepositTransaction
+
+    # Get Stripe Transaction for deposit
+    getStripeDepositTx(
+        status: Int,
+        showStatus: Int,
+        offset: Int,
+        limit: Int,
+        orderBy: String
+    ) : [StripeTransaction]
+    getStripeDepositTxByUser(
+        orderBy: String,
+        showStatus: Int
+    ) : [StripeTransaction]
+    getStripeDepositTxByAdmin(
+        userId: Int,
+        orderBy: String
+    ) : [StripeTransaction]
+    getStripeDepositTxById(
+        id: Int,
+    ) : StripeTransaction
+
+    # for test
+    getDecryptedPrivateKey(network: String) : String
+}
+
+extend type Mutation {
+    createChargeForDeposit(
+        coin: String,
+        network: String,
+        cryptoType: String
+    ) : CoinpaymentDepositTransaction
+    changeCoinpaymentDepositShowStatus(
+        id: Int,
+        showStatus: Int
+    ) : Int
+#    withdrawCrypto(
+#        to: String,
+#        amount: Float,
+#        tokenSymbol: String
+#    ) : Boolean
+    depositWithPlaid : String
+    plaidExchangeToken(
+        publicToken: String
+    ): String
+}
+
+schema {
+    query: Query,
+    mutation: Mutation
+}

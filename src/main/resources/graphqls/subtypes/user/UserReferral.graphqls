@@ -1,0 +1,23 @@
+type UserReferral {
+    id: Int,
+    referralCode: String,
+    referredByCode: String,
+    walletConnect: String,
+    rate: Int,
+    commissionRate : [Int],
+    firstPurchase : Boolean
+}
+
+type ActiveReferralResponse {
+    code: String,
+    referralWallet: String,
+    rate: Int,
+    commissionRate : [Int]
+}
+
+type UpdateReferralAddressResponse {
+    status: Boolean,
+    referralWallet: String,
+    rate: Int,
+    commissionRate : [Int]
+}

@@ -1,0 +1,12 @@
+type AvatarComponent {
+    groupId: String!,
+    compId: Int!,
+    tierLevel: Int,
+    price: Float,
+    limited: Int,
+    purchased: Int,
+    svg: String,
+    width: Int,
+    top: Int,
+    left: Int
+}

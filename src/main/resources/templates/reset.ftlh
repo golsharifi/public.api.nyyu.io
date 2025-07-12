@@ -1,0 +1,112 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat|Arial|Raleway"
+      rel="stylesheet"
+    />
+    <title>Nyyu</title>
+  </head>
+  <body>
+    <div
+      style="
+        width: 500px;
+        height: auto;
+        padding-left: 30px;
+        font-family: 'Montserrat', Arial, Raleway;
+        overflow: hidden;
+        "
+    >
+    <div
+    style="
+    padding-top: 10px
+    "
+    >
+        <img src="https://storage.cloud.google.com/assets.nyyu.io/nyyu.png" width="51" height="42" />
+    </div>
+    
+      <div
+        style="
+          font-weight: 500;
+          font-size: 16px;
+          line-height: 20px;
+          color: black;
+          padding-top: 40px;
+          padding-bottom: 20px;
+        "
+      >
+        Greetings,
+      </div>
+      <div
+        style="
+          font-weight: 500;
+          font-size: 16px;
+          color: black;
+          line-height: 22px;
+        "
+      >
+      We have recieved a request to reset your password. If you requested this change, your password reset code is:
+      </div>
+      <div
+        style="
+          font-size: 48px;
+          font-weight: bold;
+          color: #63AAEB;
+          padding-bottom: 30px;
+          padding-top: 30px;
+        "
+      >
+        ${code}
+      </div>
+
+
+
+      <div
+        style="
+          font-weight: 500;
+          font-size: 16px;
+          color: black;
+          line-height: 22px;
+          padding-bottom: 10px;
+          text-align: justify;
+        "
+      >
+      Don’t recognize this activity? Please
+      <a style="color: #63AAEB" href="https://nyyu.io/app/forgot-password/">reset your password</a>
+      and contact 
+      <a style="color: #63AAEB" href="https://help.nyyu.io/hc/en-gb/requests/new">customer support </a>
+      immediately.
+      </div>
+
+      <div
+        style="
+          font-size: 10px;
+          line-height: 14px;
+          color: black;
+          padding-top: 36px;
+          padding-bottom: 10px;
+          text-align: justify;
+
+        ">
+          <strong>Kindly note:</strong> Please be aware of phishing sites and always make sure you are visiting the official nyyu.io website when entering sensitive data.
+          </div>
+
+          <div
+          style="
+            font-size: 10px;
+            line-height: 14px;
+            color: black;
+            padding-bottom: 10px;
+            text-align: left;
+          ">
+          © 2022 NYYU UAB. All rights reserved.
+          <p>Tel: +1 (646) 921-4660</p>
+          <p>Virtual address: Lvivo g. 105-2nd floor, 08104 Vilnius, Lithuania</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

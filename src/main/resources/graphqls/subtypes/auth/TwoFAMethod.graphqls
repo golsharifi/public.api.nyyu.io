@@ -1,0 +1,4 @@
+input TwoFAEntry {
+  key: String!
+  value: String!
+}

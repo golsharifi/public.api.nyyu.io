@@ -1,0 +1,14 @@
+{
+  "properties": [
+    {
+      "name": "azure.storage.connection-string",
+      "type": "java.lang.String",
+      "description": "Azure Storage Account connection string"
+    },
+    {
+      "name": "azure.storage.container-name",
+      "type": "java.lang.String",
+      "description": "Azure Blob Storage container name for KYC documents"
+    }
+  ]
+}

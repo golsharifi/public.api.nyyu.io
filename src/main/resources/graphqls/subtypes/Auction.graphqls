@@ -1,0 +1,16 @@
+type Auction {
+	id: Int!,
+	regDate: Float,
+	updateDate: Float,
+	deleted: Int,
+	round: Int,
+	startedAt: Float,
+	endedAt: Float,
+	totalToken: Float,
+	minPrice: Float,
+	token: Float,
+	sold: Float,
+	stats: AuctionStats,
+	status: Int,
+	kind: Int
+}

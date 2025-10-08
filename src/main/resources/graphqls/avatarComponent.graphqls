@@ -1,0 +1,46 @@
+extend type Query {
+    getAvatarComponent(
+        groupId: String!,
+        compId: Int!
+    ): AvatarComponent
+    getAvatarComponentsByGroup (
+        groupId: String!
+    ) : [AvatarComponent]
+    getAvatarComponents : [AvatarComponent]
+    getAvatarComponentsBySet (
+        set: [AvatarSetInput]
+    ) : [AvatarComponent]
+}
+
+extend type Mutation {
+    createNewComponent (
+        groupId: String!,
+        tierLevel: Int!,
+        price: Float!,
+        limited: Int!,
+        svg: String!,
+        width: Int!,
+        top: Int!,
+        left: Int!
+    ) : AvatarComponent
+    updateComponent (
+        groupId: String!,
+        compId: Int!,
+        tierLevel: Int,
+        price: Float,
+        limited: Int,
+        svg: String,
+        width: Int,
+        top: Int,
+        left: Int
+    ) : AvatarComponent
+    deleteAvatarComponent(
+        groupId: String,
+        compId: Int
+    ) : Int
+}
+
+schema {
+    query: Query,
+    mutation: Mutation
+}

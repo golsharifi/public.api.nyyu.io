@@ -1,0 +1,39 @@
+extend type Query {
+	checkRounds: String
+	getAuctions: [Auction]
+	getAuctionByStatus(
+		status: Int!
+	) : [Auction]
+	getAuctionById(id: Int!) : Auction
+	getAuctionByNumber(
+		round: Int!
+	) : Auction
+	getNewRound : Int
+	getCurrentRound : CurrentRound
+	getLastRound : Int
+}
+
+extend type Mutation {
+	createAuction(
+		startedAt: Float!,  
+		duration: Float!,
+		totalToken: Float!, 
+		minPrice: Float!,
+		avatar: [AvatarSetInput],
+		token: Float
+	) : Auction
+	updateAuction(
+		id: String!
+		round: Int, 
+		duration: Float,  
+		totalToken: Float, 
+		minPrice: Float,
+		avatar: [AvatarSetInput],
+		token: Float
+	) : Auction!
+}
+
+schema {
+   query: Query,
+   mutation: Mutation
+}

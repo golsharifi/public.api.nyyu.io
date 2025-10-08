@@ -1,0 +1,158 @@
+extend type Mutation {
+    sendWithdrawConfirmCode : Int
+
+    # PayPal mutation
+    generateWithdraw : String
+    paypalWithdrawRequest(
+        email: String,
+        target: String,
+        amount: Float,
+        sourceToken: String,
+        code: String
+    ) : PaypalWithdraw
+    confirmPaypalWithdraw(
+        id: Int,
+        status: Int,
+        deniedReason: String,
+        code: String
+    ) : Int
+
+    changePayPalWithdrawShowStatus(
+        id: Int,
+        showStatus: Int
+    ) : Int
+
+    # Crypto mutation
+    cryptoWithdrawRequest(
+        amount: Float,
+        sourceToken: String,
+        network: String,
+        des: String,
+        code: String
+    ) : CryptoWithdraw
+    confirmCryptoWithdraw(
+        id: Int,
+        status: Int,
+        deniedReason: String,
+        code: String
+    ) : Int
+    changeCryptoWithdrawShowStatus(
+        id: Int,
+        showStatus: Int
+    ) : Int
+
+    cancelTransaction(
+        nonce: Int
+    ) : String
+
+    # Bank withdraw
+    bankWithdrawRequest(
+        targetCurrency: String,
+        amount: Float,
+        sourceToken: String,
+        mode: Int,
+        country: String,
+        holderName: String,
+        bankName: String,
+        accNumber: String,
+        metadata: String,
+        address: String,
+        postCode: String,
+        code: String
+    ) : BankWithdrawRequest
+    approveBankWithdrawRequest(
+        id: Int,
+        code: String
+    ) : Int
+    denyBankWithdrawRequest(
+        id: Int,
+        reason: String
+    ) : Int
+    changeBankWithdrawShowStatus(
+        id: Int,
+        showStatus: Int
+    ) : Int
+
+    addNewWithdrawToken(
+        tokenName: String,
+        tokenSymbol: String,
+        network: String,
+        address: String
+    ) : Token
+}
+
+extend type Query {
+    # PayPal Queries
+    getPaypalWithdrawByUser(
+        showStatus: Int
+    ) : [PaypalWithdraw]
+    getPaypalWithdrawByUserByAdmin(
+        userId: Int
+    ) : [PaypalWithdraw]
+    getPaypalWithdrawByStatus(
+        userId: Int,
+        status: Int
+    ) : [PaypalWithdraw]
+    getPaypalPendingWithdrawRequests : [PaypalWithdraw]
+    getPaypalPendingWithdrawRequestsByAdmin : [PaypalWithdraw]
+    getPaypalWithdrawById(
+        id: Int,
+        showStatus: Int
+    ) : PaypalWithdraw
+    getPaypalWithdrawByIdByAdmin(
+        id: Int
+    ) : PaypalWithdraw
+    getAllPaypalWithdraws : [PaypalWithdraw]
+
+
+    # Crypto queries
+    getCryptoWithdrawByUser(
+        showStatus: Int
+    ) : [CryptoWithdraw]
+    getCryptoWithdrawByUserByAdmin(
+        userId: Int
+    ) : [CryptoWithdraw]
+    getCryptoWithdrawByStatus(
+        status: Int
+    ) : [CryptoWithdraw]
+    getCryptoWithdrawByStatusByAdmin(
+        userId: Int,
+        status: Int
+    ) : [CryptoWithdraw]
+    getCryptoPendingWithdrawRequests : [CryptoWithdraw]
+    getCryptoWithdrawById(
+        id: Int,
+        showStatus: Int
+    ) : CryptoWithdraw
+    getAllCryptoWithdraws : [CryptoWithdraw]
+    getCryptoWithdrawByIdByAdmin(
+        id: Int
+    ) : CryptoWithdraw
+
+    # Bank withdraw
+    getPendingBankWithdrawRequests : [BankWithdrawRequest]
+    getAllApprovedBankWithdrawRequests : [BankWithdrawRequest]
+    getAllDeniedBankWithdrawRequests : [BankWithdrawRequest]
+    getBankWithdrawRequestsByUser(
+        showStatus: Int
+    ) : [BankWithdrawRequest]
+    getBankWithdrawRequestsByAdmin : [BankWithdrawRequest]
+    getBankWithdrawRequestById(
+        id: Int,
+        showStatus: Int
+    ) : BankWithdrawRequest
+    getBankWithdrawRequestByIdByAdmin(
+        id: Int
+    ) : BankWithdrawRequest
+
+    # Admin wallet
+    getAdminWalletBalance(
+        network: String,
+        token: String
+    ) : Float
+}
+
+schema {
+    query: Query,
+    mutation: Mutation
+}

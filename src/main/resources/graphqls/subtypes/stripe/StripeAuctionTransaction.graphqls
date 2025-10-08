@@ -1,0 +1,16 @@
+type StripeAuctionTransaction {
+    id: Int,
+    auctionId: Int!,
+    userId: Int!,
+    amount: Float,
+    fee: Float,
+    createdAt: Float,
+    confirmedAt: Float,
+    status: Boolean,
+    fiatType: String,
+    fiatAmount: Float,
+    paymentIntentId: String,
+    paymentMethodId: String,
+    auctionId: Int,
+    bidId: Int
+}

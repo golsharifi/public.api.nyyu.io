@@ -1,0 +1,1 @@
+${code} is your Nyyu verification code.

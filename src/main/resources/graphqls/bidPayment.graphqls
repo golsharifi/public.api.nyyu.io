@@ -1,0 +1,102 @@
+extend type Query {
+	# for stripe
+	# getStripeAuctionTxByRound(
+	# 	roundId: String!
+	# ) : [StripeTransaction]
+	getStripeAuctionTxByUser (
+		showStatus: Int,
+		orderBy: String
+	) : [StripeTransaction]
+	getStripeAuctionTxByAdmin(
+		userId: Int,
+		orderBy: String
+	) : [StripeTransaction]
+	getStripeAuctionTx(
+		roundId: String!,
+	) : [StripeTransaction]
+	getStripeAuctionTxForRoundByAdmin(
+		roundId: Int!,
+		userId: String
+	) : [StripeTransaction]
+	
+	# for coinpayment
+    getCryptoAuctionTxById(
+		id: Int!
+	) : CoinpaymentDepositTransaction
+	getCryptoAuctionTxByUser 
+	  : [CoinpaymentDepositTransaction]
+	getCryptoAuctionTxByAdmin(
+		userId: Int!
+	) : [CoinpaymentDepositTransaction]
+	getCryptoAuctionTxByRound(
+		roundId: Int!
+	) : [CoinpaymentDepositTransaction]
+	getCryptoAuctionTx(
+		roundId: Int!,
+	) : [CoinpaymentDepositTransaction]
+	getCryptoAuctionTxPerRoundByAdmin(
+		roundId: Int!,
+		userId: Int
+	) : [CoinpaymentDepositTransaction]
+	
+	# for paypal
+	getAllPaypalAuctionTxns(
+		status: Int,
+		showStatus: Int,
+		offset: Int,
+		limit: Int,
+		orderBy: String
+	) : [PaypalTransaction]
+	getPaypalAuctionTxnsByUser(
+		orderBy: String
+		showStatus: Int
+	) : [PaypalTransaction]
+	getPaypalAuctionTxn(
+		id: Int
+	) : PaypalTransaction
+}
+
+extend type Mutation {
+    payStripeForAuction (
+		roundId: Int,
+		amount: Float,
+		fiatAmount: Float,
+		fiatType: String,
+		paymentIntentId: String,
+		paymentMethodId: String,
+		isSaveCard: Boolean
+	) : PayResponse!
+	payStripeForAuctionWithSavedCard (
+		roundId: Int,
+		amount: Float,
+		fiatAmount: Float,
+		fiatType: String,
+		cardId: Int,
+		paymentIntentId: String
+	) : PayResponse!
+    
+	createCryptoPaymentForAuction(
+		roundId: Int!,
+		cryptoType: String,
+		network: String,
+		coin: String!
+	) : CoinpaymentDepositTransaction
+	
+	
+	paypalForAuction(
+		roundId: Int,
+		currencyCode: String,
+	) : OrderResponseDTO
+	captureOrderForAuction(
+		orderId: String
+	) : Boolean
+	payWalletForAuction(
+		roundId: Int,
+		cryptoType: String
+	) : Int
+}
+
+schema {
+   query: Query,
+   mutation: Mutation
+} 

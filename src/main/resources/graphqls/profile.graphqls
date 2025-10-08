@@ -1,0 +1,59 @@
+scalar Upload
+
+input NamesInput {
+  first_name: String
+  middle_name: String
+  last_name: String
+}
+
+extend type Mutation {
+  changeBuyName(newName: String!): String
+  changeEmail(newEmail: String!): String
+  confirmChangeEmail(newEmail: String, code: String): Int
+  setAvatar(prefix: String!, name: String!): String
+  updateAvatarSet(
+    components: [AvatarSetInput]
+    hairColor: String
+    skinColor: String
+  ): [AvatarSet]
+  updateKYCSetting(
+    kind: String!
+    bid: Float
+    direct: Float
+    deposit: Float
+    withdraw: Float
+  ): Int
+  createNewReference: String
+
+  # Admin manual KYC override - allows admins to verify/unverify users
+  adminForceKYCVerification(userId: Int!, verified: Boolean!): String
+
+  # upload verification data
+  uploadDocument(document: Upload): Boolean
+  uploadAddress(address: Upload): Boolean
+  uploadConsent(consent: Upload): Boolean
+  uploadSelfie(selfie: Upload): Boolean
+  sendVerifyRequest(
+    country: String
+    fullAddr: String
+    names: NamesInput
+  ): String
+
+  insertOrUpdateReference(reference: String): Int
+
+  updatePrivateKeys: Int
+}
+
+extend type Query {
+  getUserTierTask: TierTask
+  getKYCSettings: [KYCSetting]
+  kycStatusRequest: Int
+  getShuftiRefPayload: ShuftiRefPayload
+  getShuftiReference: ShuftiReference
+  manualStatusCheck: Boolean
+}
+
+schema {
+  mutation: Mutation
+  query: Query
+}

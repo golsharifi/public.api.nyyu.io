@@ -1,0 +1,43 @@
+input SkillSetInput {
+    name: String,
+    rate: Int
+}
+
+extend type Query {
+    getAvatars : [AvatarProfile]
+    getAvatar (
+        id: Int!
+    ) : AvatarProfile
+    getAvatarByName (
+        surname: String!
+    ) : AvatarProfile
+}
+
+extend type Mutation {
+    createNewAvatar(
+        fname: String!,
+        surname: String!,
+        skillSet: [SkillSetInput]!,
+        avatarSet: [AvatarSetInput],
+        factsSet: [FactsInput],
+        hairColor: String,
+        skinColor: String,
+        details: String
+    ) : AvatarProfile
+    updateAvatarProfile (
+        id: Int!,
+        fname: String,
+        surname: String,
+        skillSet: [SkillSetInput],
+        avatarSet: [AvatarSetInput],
+        factsSet: [FactsInput],
+        hairColor: String,
+        skinColor: String,
+        details: String
+    ) : Boolean
+}
+
+schema {
+    query: Query,
+    mutation: Mutation
+}

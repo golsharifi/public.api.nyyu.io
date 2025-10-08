@@ -1,0 +1,100 @@
+extend type Mutation {
+    payStripeForPreSale(
+        id: Int,
+        presaleId: Int,
+        orderId: Int,
+        amount: Float,
+        fiatAmount: Float,
+        fiatType: String,
+        paymentIntentId: String,
+        paymentMethodId: String,
+        isSaveCard: Boolean
+    ) : PayResponse
+    payStripeForPreSaleWithSavedCard(
+        id: Int,
+        presaleId: Int,
+        orderId: Int,
+        amount: Float,
+        fiatAmount: Float,
+        fiatType: String,
+        cardId: Int,
+        paymentIntentId: String
+    ) : PayResponse
+   
+    # payment for presale
+    createChargeForPresale(
+        presaleId: Int,
+        orderId: Int,
+        coin: String,
+        network: String,
+        cryptoType: String,
+    ) : CoinpaymentDepositTransaction
+    
+    # for paypal
+    paypalForPresale(
+        presaleId: Int,
+        orderId: Int,
+        currencyCode: String
+    ) : OrderResponseDTO
+    captureOrderForPresale(
+        orderId: String
+    ) : Boolean
+    # for wallet
+    payWalletForPresale(
+        presaleId: Int,
+        orderId: Int,
+        cryptoType: String
+    ) : String
+}
+
+extend type Query {
+    # for Stripe
+    getStripePresaleTx(
+        status: Int,
+        showStatus: Int,
+        offset: Int,
+        limit: Int,
+        orderBy: String
+    ) : [StripeTransaction]
+    getStripePresaleTxByUser(
+        orderBy: String
+        showStatus: Int,
+    ) : [StripeTransaction]
+    getStripePresaleTxById(
+        id: Int
+    ) : StripeTransaction
+    
+    # getStripePresaleTxByPresaleId(
+    #    userId: Int,
+    #    presaleId: Int,
+    #    orderBy: String
+    #) : [StripeTransaction]
+    
+    # for Coinpayment
+    getAllCryptoPresaleTx : [CoinpaymentDepositTransaction]
+    getCryptoPresaleTxByUser : [CoinpaymentDepositTransaction]
+    getCryptoPresaleTxById(
+        id: Int
+    ) : CoinpaymentDepositTransaction
+    
+    # for paypal
+    getAllPaypalPresaleTxns(
+        status: Int,
+        showStatus: Int,
+        offset: Int,
+        limit: Int,
+        orderBy: String
+    ) : [PaypalTransaction]
+    getPaypalPresaleTxnsByUser(
+        orderBy: String,
+        showStatus: Int
+    ) : [PaypalTransaction]
+    getPaypalPresaleTxn(
+        id: Int
+    ) : PaypalTransaction
+}
+
+schema {
+    mutation: Mutation,
+    query: Query
+}

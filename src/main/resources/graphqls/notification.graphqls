@@ -1,0 +1,23 @@
+extend type Query {
+  getAllUnReadNotifications: [Notification]
+  getNotifications(
+    offset: Int, 
+    limit: Int
+  ): [Notification]
+  getAllUnReadNotifications: [Notification]
+  getNotificationTypes: [NotificationType]
+}
+
+extend type Mutation {
+  setNotificationRead(id: String): Notification
+  setNotificationReadFlag(
+    id: Int!
+  ): Notification
+  setNotificationReadFlagAll: String
+  changeNotifySetting(nType: Int!, status: Boolean): Int
+}
+
+schema {
+  query: Query
+  mutation: Mutation
+}

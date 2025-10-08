@@ -1,0 +1,14 @@
+type UserAvatar {
+    id: Int,
+    regDate: Float,
+    updateDate: Float,
+    deleted: Int,
+    # json string 
+    purchased: String, 
+    # json string
+    selected: String,
+    hairColor: String,
+    skinColor: String,
+    prefix: String,
+    name: String
+}
